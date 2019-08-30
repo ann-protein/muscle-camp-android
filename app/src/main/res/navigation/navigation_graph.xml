@@ -6,6 +6,7 @@
 
     <fragment
         android:id="@+id/musclePostsFragment"
-        android:name="jp.co.musclecamp.view.muscleposts.MusclePostsFragment"/>
+        android:name="jp.co.musclecamp.view.muscleposts.MusclePostsFragment"
+        android:label="Posts"/>
 
 </navigation>
