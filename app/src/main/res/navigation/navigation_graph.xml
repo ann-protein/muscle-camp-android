@@ -2,7 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/musclePostsFragment">
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="jp.co.musclecamp.view.splash.SplashFragment"
+        android:label="Splash">
+
+        <action
+            android:id="@+id/action_splash_to_muscle_posts"
+            app:destination="@id/musclePostsFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/stay_in"
+            app:exitAnim="@anim/stay_out"
+            app:popEnterAnim="@anim/stay_in"
+            app:popExitAnim="@anim/stay_out" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/musclePostsFragment"
