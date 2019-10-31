@@ -29,7 +29,6 @@ class SplashFragment : Fragment(R.layout.fragment_splash), CoroutineScope {
         findNavController().navigate(R.id.action_splash_to_muscle_posts)
     }
 
-
     private fun goToSignUp() {
 
     }
