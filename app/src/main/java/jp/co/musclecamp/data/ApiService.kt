@@ -1,6 +1,8 @@
 package jp.co.musclecamp.data
 
 import jp.co.musclecamp.model.Account
+import jp.co.musclecamp.model.SignInCredential
+import jp.co.musclecamp.model.Token
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -12,10 +14,10 @@ interface ApiService {
     @GET("/user/{user_name}")
     fun getUser(@Path("user_name") userName: String): Response<Unit>
 
-    @RequireAuth
     @POST("/user/")
-    fun getUser(): Response<Unit>
+    fun signIn(@Body signInCredential: SignInCredential): Response<Token>
 
+    @RequireAuth
     @POST("/users/")
     fun signUp(@Body account: Account): Response<Unit>
 }

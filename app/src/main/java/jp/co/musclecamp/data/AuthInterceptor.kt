@@ -1,6 +1,6 @@
 package jp.co.musclecamp.data
 
-import jp.co.musclecamp.model.Token
+import jp.co.musclecamp.model.TokenManager
 import okhttp3.Interceptor
 import okhttp3.Response
 import retrofit2.Invocation
@@ -13,7 +13,7 @@ object AuthInterceptor: Interceptor {
 
         val invocation = request.tag(Invocation::class.java)
         val authAnnotation = invocation?.method()?.getAnnotation(RequireAuth::class.java)
-        val token = Token.get()
+        val token = TokenManager.get()
         if (authAnnotation != null && token != null) {
             request = request
                 .newBuilder()
