@@ -1,18 +1,22 @@
 package jp.co.musclecamp.data
 
+import android.preference.PreferenceManager
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import jp.co.musclecamp.BuildConfig
 import jp.co.musclecamp.model.Account
 import jp.co.musclecamp.model.SignInCredential
 import jp.co.musclecamp.model.Token
+import jp.co.musclecamp.view.MyApplication
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.*
 
 object Repository {
     private val apiService: ApiService by lazy { createService() }
+    private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.instance)
 
     suspend fun signUp(account: Account): Response<Unit> {
         return apiService.signUp(account)
@@ -23,6 +27,16 @@ object Repository {
             SignInCredential(email, password)
         )
     }
+
+    fun getToken(): String? = sharedPreferences.getString(KEY_TOKEN, null)
+
+    fun saveToken(token: String) {
+        sharedPreferences
+            .edit()
+            .putString(KEY_TOKEN, token)
+            .apply()
+    }
+
 
     private fun createService(): ApiService {
         val apiUrl = BuildConfig.API_BASE_URL
@@ -49,4 +63,5 @@ object Repository {
         return client.build()
     }
 
+    private const val KEY_TOKEN: String = "TokenString"
 }
