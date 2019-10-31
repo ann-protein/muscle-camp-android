@@ -12,12 +12,12 @@ import retrofit2.http.Path
 interface ApiService {
     @RequireAuth
     @GET("/user/{user_name}")
-    fun getUser(@Path("user_name") userName: String): Response<Unit>
+    suspend fun getUser(@Path("user_name") userName: String): Response<Unit>
 
     @POST("/user/")
-    fun signIn(@Body signInCredential: SignInCredential): Response<Token>
+    suspend fun signIn(@Body signInCredential: SignInCredential): Response<Token>
 
     @RequireAuth
     @POST("/users/")
-    fun signUp(@Body account: Account): Response<Unit>
+    suspend fun signUp(@Body account: Account): Response<Unit>
 }

@@ -2,6 +2,7 @@ package jp.co.musclecamp.data
 
 import android.preference.PreferenceManager
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
 import jp.co.musclecamp.BuildConfig
 import jp.co.musclecamp.model.Account
 import jp.co.musclecamp.model.SignInCredential
@@ -43,7 +44,7 @@ object Repository {
         val client = builderHttpClient()
         val retrofit = Retrofit.Builder()
             .baseUrl(apiUrl)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(client)
             .build()

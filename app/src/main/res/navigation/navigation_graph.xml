@@ -19,6 +19,31 @@
             app:popEnterAnim="@anim/stay_in"
             app:popExitAnim="@anim/stay_out" />
 
+        <action
+            android:id="@+id/action_splash_to_sign_up"
+            app:destination="@id/signUpFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/stay_in"
+            app:exitAnim="@anim/stay_out"
+            app:popEnterAnim="@anim/stay_in"
+            app:popExitAnim="@anim/stay_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="jp.co.musclecamp.view.signup.SignUpFragment"
+        android:label="Sign up">
+
+        <action
+            android:id="@+id/action_sign_up_to_muscle_posts"
+            app:destination="@id/musclePostsFragment"
+            app:enterAnim="@anim/stay_in"
+            app:exitAnim="@anim/stay_out"
+            app:popEnterAnim="@anim/stay_in"
+            app:popExitAnim="@anim/stay_out" />
+
     </fragment>
 
     <fragment

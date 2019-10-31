@@ -7,14 +7,8 @@ import androidx.navigation.fragment.findNavController
 import jp.co.musclecamp.R
 import jp.co.musclecamp.data.Repository
 import jp.co.musclecamp.model.TokenManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlin.coroutines.CoroutineContext
 
-class SplashFragment : Fragment(R.layout.fragment_splash), CoroutineScope {
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + Job()
+class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +24,6 @@ class SplashFragment : Fragment(R.layout.fragment_splash), CoroutineScope {
     }
 
     private fun goToSignUp() {
-
+        findNavController().navigate(R.id.action_splash_to_sign_up)
     }
 }
