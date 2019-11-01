@@ -27,7 +27,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), CoroutineScope {
             val account = Account(
                 User(
                     "",
-                    "",
+                    emailEditText.text.toString(),
                     "Hello",
                     "MukiMuki${Random.nextInt(10000)}",
                     emailEditText.text.toString()

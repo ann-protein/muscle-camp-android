@@ -5,6 +5,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import jp.co.musclecamp.BuildConfig
 import jp.co.musclecamp.model.Account
+import jp.co.musclecamp.model.AccountRegister
 import jp.co.musclecamp.model.SignInCredential
 import jp.co.musclecamp.model.Token
 import jp.co.musclecamp.view.MyApplication
@@ -17,10 +18,13 @@ import java.util.*
 
 object Repository {
     private val apiService: ApiService by lazy { createService() }
-    private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.instance)
+    private val sharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(MyApplication.instance)
 
     suspend fun signUp(account: Account): Response<Unit> {
-        return apiService.signUp(account)
+        return apiService.signUp(
+            AccountRegister(account)
+        )
     }
 
     suspend fun signIn(email: String, password: String): Response<Token> {
