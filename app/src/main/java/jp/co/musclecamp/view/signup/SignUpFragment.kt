@@ -45,10 +45,10 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), CoroutineScope {
             if (signUpResponse.isSuccessful.not()) return@launch
 
             val signInResponse = Repository.signIn(account.user.email, account.password)
-            if (signInResponse.isSuccessful) {
-                Repository.saveToken(signInResponse.body()!!.token)
-                findNavController().navigate(R.id.action_sign_up_to_muscle_posts)
-            }
+            if (signInResponse.isSuccessful.not()) return@launch
+
+            Repository.saveToken(signInResponse.body()!!.token)
+            findNavController().navigate(R.id.action_sign_up_to_muscle_posts)
         }
     }
 }
