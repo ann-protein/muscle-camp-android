@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import jp.co.musclecamp.R
 import jp.co.musclecamp.data.Repository
+import kotlinx.android.synthetic.main.fragment_muscle_posts.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -17,9 +18,16 @@ class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineS
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val adapter = MusclePostAdapter()
+        recyclerView.adapter = adapter
 
         launch {
-            Repository.getMusclePosts()
+
+            val result = Repository.getMusclePosts()
+            if (result.isSuccessful){
+                val musclePosts = result.body()?.musclePosts ?: return@launch
+                adapter.submitList(musclePosts)
+            }
         }
     }
 }
