@@ -28,6 +28,7 @@ class MusclePostAdapter : ListAdapter<MusclePost, RecyclerView.ViewHolder>(Muscl
 
         fun bind(musclePost: MusclePost){
             itemView.musclePostTitle.text = musclePost.musclePostBody.title
+            itemView.musclePostBody.text = musclePost.musclePostBody.body
         }
     }
 }
