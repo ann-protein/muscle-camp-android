@@ -21,6 +21,7 @@ interface ApiService {
     @POST("/users")
     suspend fun signUp(@Body accountRegister: AccountRegister): Response<Unit>
 
+    @RequireAuth
     @POST("/muscle_posts")
     suspend fun postMuscle(@Body musclePostSender: MusclePostSender): Response<Unit>
 }
