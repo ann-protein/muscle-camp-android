@@ -1,6 +1,7 @@
 package jp.co.musclecamp.view.muscleposts
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import jp.co.musclecamp.R
@@ -25,7 +26,12 @@ class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineS
             val bodyParts = listOf("上腕二頭筋", "腹筋")
 
             launch {
-                Repository.postMuscle(title, body, bodyParts)
+                val response = Repository.postMuscle(title, body, bodyParts)
+                if (response.isSuccessful) {
+
+                } else {
+                    Log.e("", response.errorBody().toString())
+                }
             }
         }
     }
