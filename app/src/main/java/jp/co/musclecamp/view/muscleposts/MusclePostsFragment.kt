@@ -5,8 +5,15 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import jp.co.musclecamp.R
 import kotlinx.android.synthetic.main.fragment_muscle_posts.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlin.coroutines.CoroutineContext
 
-class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts) {
+class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineScope {
+    override val coroutineContext: CoroutineContext
+        get() = Job() + Dispatchers.Main
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
