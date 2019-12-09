@@ -23,13 +23,21 @@ class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineS
 
         val adapter = MusclePostAdapter()
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+//        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
 
         launch {
             val result = Repository.getMusclePosts()
             if (result.isSuccessful){
                 val musclePosts = result.body()?.musclePosts ?: return@launch
-                adapter.submitList(musclePosts)
+                if (musclePosts.isEmpty()) {
+                    noPostsMessage.visibility = View.VISIBLE
+                    recyclerView.visibility = View.GONE
+                }
+                else {
+                    noPostsMessage.visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
+                    adapter.submitList(musclePosts)
+                }
             }
         }
 

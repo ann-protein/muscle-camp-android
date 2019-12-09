@@ -20,6 +20,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/noPostsMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No training, No muscle"
