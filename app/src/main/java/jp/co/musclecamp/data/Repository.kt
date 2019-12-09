@@ -4,10 +4,7 @@ import android.preference.PreferenceManager
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import jp.co.musclecamp.BuildConfig
-import jp.co.musclecamp.model.Account
-import jp.co.musclecamp.model.AccountRegister
-import jp.co.musclecamp.model.SignInCredential
-import jp.co.musclecamp.model.Token
+import jp.co.musclecamp.model.*
 import jp.co.musclecamp.view.MyApplication
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,6 +29,11 @@ object Repository {
             SignInCredential(email, password)
         )
     }
+
+    suspend fun getMusclePosts(): Response<MusclePostContainer> {
+        return apiService.getMusclePosts()
+    }
+
 
     fun getToken(): String? = sharedPreferences.getString(KEY_TOKEN, null)
 
