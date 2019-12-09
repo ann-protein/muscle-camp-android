@@ -1,9 +1,6 @@
 package jp.co.musclecamp.data
 
-import jp.co.musclecamp.model.AccountRegister
-import jp.co.musclecamp.model.MusclePostContainer
-import jp.co.musclecamp.model.SignInCredential
-import jp.co.musclecamp.model.Token
+import jp.co.musclecamp.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,6 +17,10 @@ interface ApiService {
 
     @POST("/users")
     suspend fun signUp(@Body accountRegister: AccountRegister): Response<Unit>
+
+    @RequireAuth
+    @POST("/muscle_posts")
+    suspend fun postMuscle(@Body musclePostSenderContainer: MusclepostSenderContainer): Response<Unit>
 
     @RequireAuth
     @GET("/muscle_posts?limit=100")

@@ -1,7 +1,6 @@
 package jp.co.musclecamp.view.muscleposts
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,24 +13,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineScope {
+class SendMusclePostFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineScope {
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + Job()
+        get() = Job() + Dispatchers.Main
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val adapter = MusclePostAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-
-        launch {
-            val result = Repository.getMusclePosts()
-            if (result.isSuccessful){
-                val musclePosts = result.body()?.musclePosts ?: return@launch
-                adapter.submitList(musclePosts)
-            }
-        }
 
         postButton.setOnClickListener {
             val title = "ムキムキになる伝説のメニュー"
@@ -39,12 +26,7 @@ class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineS
             val bodyParts = listOf("上腕二頭筋", "腹筋")
 
             launch {
-                val response = Repository.postMuscle(title, body, bodyParts)
-                if (response.isSuccessful) {
-
-                } else {
-                    Log.e("", response.errorBody().toString())
-                }
+                Repository.postMuscle(title, body, bodyParts)
             }
         }
     }
