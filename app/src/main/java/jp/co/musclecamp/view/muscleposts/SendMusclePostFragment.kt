@@ -3,6 +3,7 @@ package jp.co.musclecamp.view.muscleposts
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import jp.co.musclecamp.R
 import jp.co.musclecamp.data.Repository
 import kotlinx.android.synthetic.main.fragment_muscle_posts.*
