@@ -8,4 +8,7 @@ data class MusclePostBody(
     val title: String,
     val body: String,
     @Json(name = "body_parts") val bodyParts: List<String>
-)
+) {
+    val bodyPartsString: String
+        get() = bodyParts.joinToString(separator = "/")
+}

@@ -9,4 +9,6 @@
     <color name="textColorPrimary">#000000</color>
     <color name="textColorSecondary">#ffffff</color>
     <color name="colorAccent">@color/colorSecondary</color>
+
+    <color name="colorMusclePostBackground">#AAAAAA</color>
 </resources>
