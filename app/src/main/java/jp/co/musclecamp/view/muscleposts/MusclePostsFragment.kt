@@ -29,7 +29,15 @@ class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineS
             val result = Repository.getMusclePosts()
             if (result.isSuccessful){
                 val musclePosts = result.body()?.musclePosts ?: return@launch
-                adapter.submitList(musclePosts)
+                if (musclePosts.isEmpty()) {
+                    noPostsMessage.visibility = View.VISIBLE
+                    recyclerView.visibility = View.GONE
+                }
+                else {
+                    noPostsMessage.visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
+                    adapter.submitList(musclePosts)
+                }
             }
         }
 
