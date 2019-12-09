@@ -11,7 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.*
 
 object Repository {
     private val apiService: ApiService by lazy { createService() }
@@ -29,6 +28,11 @@ object Repository {
             SignInCredential(email, password)
         )
     }
+
+    suspend fun getMusclePosts(): Response<MusclePostContainer> {
+        return apiService.getMusclePosts()
+    }
+
 
     suspend fun postMuscle(title: String, body: String, bodyParts: List<String>): Response<Unit> {
         return apiService.postMuscle(

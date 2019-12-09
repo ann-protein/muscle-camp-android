@@ -21,4 +21,8 @@ interface ApiService {
     @RequireAuth
     @POST("/muscle_posts")
     suspend fun postMuscle(@Body musclePostSenderContainer: MusclepostSenderContainer): Response<Unit>
+
+    @RequireAuth
+    @GET("/muscle_posts?limit=100")
+    suspend fun getMusclePosts(): Response<MusclePostContainer>
 }
