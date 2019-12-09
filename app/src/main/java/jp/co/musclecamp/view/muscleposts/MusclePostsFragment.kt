@@ -1,9 +1,9 @@
 package jp.co.musclecamp.view.muscleposts
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import jp.co.musclecamp.R
 import jp.co.musclecamp.data.Repository
@@ -34,18 +34,7 @@ class MusclePostsFragment : Fragment(R.layout.fragment_muscle_posts), CoroutineS
         }
 
         postButton.setOnClickListener {
-            val title = "ムキムキになる伝説のメニュー"
-            val body = "腹筋3回"
-            val bodyParts = listOf("上腕二頭筋", "腹筋")
-
-            launch {
-                val response = Repository.postMuscle(title, body, bodyParts)
-                if (response.isSuccessful) {
-
-                } else {
-                    Log.e("", response.errorBody().toString())
-                }
-            }
+            findNavController().navigate(R.id.action_muscle_posts_to_send_muscle_post)
         }
     }
 }
