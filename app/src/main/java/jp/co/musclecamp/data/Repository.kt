@@ -32,10 +32,12 @@ object Repository {
 
     suspend fun postMuscle(title: String, body: String, bodyParts: List<String>): Response<Unit> {
         return apiService.postMuscle(
-            MusclePostSender(
-                title,
-                body,
-                bodyParts
+            MusclepostSenderContainer(
+                MusclePostSender(
+                    title,
+                    body,
+                    bodyParts
+                )
             )
         )
     }
