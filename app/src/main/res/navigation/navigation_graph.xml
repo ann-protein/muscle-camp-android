@@ -48,7 +48,19 @@
 
     <fragment
         android:id="@+id/musclePostsFragment"
-        android:name="jp.co.musclecamp.view.muscleposts.MusclePostsFragment"
-        android:label="Posts"/>
+        android:name="jp.co.musclecamp.view.muscleposts.MusclePostsFragment">
+
+        <action
+            android:id="@+id/action_muscle_posts_to_send_muscle_post"
+            app:destination="@id/sendMusclePostFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/stay_out"
+            app:popEnterAnim="@anim/stay_in"
+            app:popExitAnim="@anim/slide_to_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/sendMusclePostFragment"
+        android:name="jp.co.musclecamp.view.muscleposts.SendMusclePostFragment"/>
 
 </navigation>
